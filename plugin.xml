@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="QueryClipse"
+            id="ca.usask.cs.srlab.queryclipse">
+      </category>
+      <view
+            name="QueryClipse"
+            icon="icons/qlogo.png"
+            category="ca.usask.cs.srlab.queryclipse"
+            class="ca.usask.cs.srlab.queryclipse.views.QueryClipseView"
+            id="ca.usask.cs.srlab.queryclipse.views.QueryClipseView">
+      </view>
+       <view
+            name="StackTrace Graph"
+            icon="icons/sgraph.png"
+            category="ca.usask.cs.srlab.queryclipse"
+            class="ca.usask.cs.srlab.queryclipse.views.StackTraceView"
+            id="ca.usask.cs.srlab.queryclipse.views.StackTraceView">
+      </view>
+   </extension>
+   <extension point="org.eclipse.ui.commands">
+         <category
+               id="ca.usask.cs.srlab.queryclipse.category"
+               description="This is a category for command"
+               name="commandcategory">
+         </category>
+         <command
+         		categoryId="ca.usask.cs.srlab.queryclipse.category"
+         		defaultHandler="ca.usask.cs.srlab.queryclipse.handlers.QueryClipseHandler"
+         		id="ca.usask.cs.srlab.queryclipse.ShowQueryClipse"
+         		name="Enable QueryClipse">
+         </command>
+          
+   </extension>
+   
+   <extension point="org.eclipse.ui.menus">
+         <menuContribution   
+               allPopups="false"
+               locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+               <menu label="QueryClipse" icon="icons/qlogo.png" id="ca.usask.cs.srlab.queryclipse.popupmenu">
+               <command commandId="ca.usask.cs.srlab.queryclipse.ShowQueryClipse"
+                     id="ca.usask.cs.srlab.queryclipse.ShowQueryClipseMenu"
+                     label="Enable QueryClipse"
+                     icon="icons/enablesc16.png"
+                     style="push">
+               </command>
+            </menu>
+         </menuContribution>
+         <menuContribution 
+         locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+               <menu label="QueryClipse" id="ca.usask.cs.srlab.queryclipse.mainmenu">
+               <command commandId="ca.usask.cs.srlab.queryclipse.ShowQueryClipse"
+                     id="ca.usask.cs.srlab.surfexample.ShowQueryClipseMenu"
+                     label="Enable QueryClipse"
+                     icon="icons/enablesc16.png"
+                     style="push">
+               </command>
+               </menu>
+         </menuContribution> 
+   </extension>
+   	<extension point="org.eclipse.ui.handlers">
+      <handler 
+      commandId="ca.usask.cs.srlab.queryclipse.ShowQueryClipse">
+      </handler>
+     </extension>
+ 
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.ProblemView"
+               relationship="right"
+               id="ca.usask.cs.srlab.queryclipse.views.SampleView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+
+</plugin>
